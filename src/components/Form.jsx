@@ -1,19 +1,56 @@
 import dollarIcon from "../assets/images/icon-dollar.svg"
 import personIcon from "../assets/images/icon-person.svg"
 
-const Form = () => {
+const Form = ({handleBillAmtInput, billAmt, handleSelectedTip, billShowAmtError, handlePeepsInput, peeps, showPeepsError}) => {
   return (
     <div className="form">
       <div className="label-group">
-        <label htmlFor="bill">Bill</label>
-        <input type="number" id="bill" />
-        <img src={ dollarIcon } aria-hidden="true" className="icon" />
+        <div className="label-wrapper">
+          <label className="label" htmlFor="bill">Bill</label>
+          <p className="error">{billShowAmtError ? "Please enter numbers only" : ""}</p>
+        </div>
+        <div className="number-wrapper">
+          <input type="text" className="number-input" id="bill" onInput={handleBillAmtInput} value={billAmt}/>
+          <img src={ dollarIcon } aria-hidden="true" className="icon" />
+        </div>
+      </div>
+
+      <div className="tip-section">
+        <p className="label"> Selected Tip %</p>
+        <div className="tip-amount-wrapper">
+          <div className="tip-amount">
+            <input type="radio" onChange={handleSelectedTip} name="tip" value=".05"/>
+            <div className="tip-btn">5%</div>
+          </div>
+          <div className="tip-amount">
+            <input type="radio" onChange={handleSelectedTip} name="tip" value=".1"/>
+            <div className="tip-btn">10%</div>
+          </div>
+          <div className="tip-amount">
+            <input type="radio" onChange={handleSelectedTip} name="tip" value=".15"/>
+            <div className="tip-btn">15%</div>
+          </div>
+          <div className="tip-amount">
+            <input type="radio" onChange={handleSelectedTip} name="tip" value=".25"/>
+            <div className="tip-btn">25%</div>
+          </div>
+          <div className="tip-amount">
+            <input type="radio" onChange={handleSelectedTip} name="tip" value=".5"/>
+            <div className="tip-btn">50%</div>
+          </div>
+          <input type="text" className="number-input tip-custom" />
+        </div>
       </div>
 
       <div className="label-group">
-        <label htmlFor="people">People</label>
-        <input type="number" id="people" />
-        <img src={ personIcon } aria-hidden="true" className="icon" />
+        <div className="label-wrapper">
+          <label className="label" htmlFor="people">Number of People</label>
+          <p className="error">{showPeepsError ? "Please enter numbers only" : ""}</p>
+        </div>
+        <div className="number-wrapper">
+          <input type="text" className="number-input" id="people" onInput={handlePeepsInput} value={peeps} />
+          <img src={ personIcon } aria-hidden="true" className="icon" />
+        </div>
       </div>
     </div>
   )

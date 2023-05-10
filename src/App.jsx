@@ -1,6 +1,9 @@
 
 import { useState } from 'react';
 
+//Logo
+import logo from "./assets/images/logo.svg"
+
 //Style
 import './App.css'
 
@@ -9,13 +12,57 @@ import Display from './components/Display'
 import Form from './components/Form'
 
 const App = () => {
-  const [count, setCount] = useState(0)
+  const [billAmt, setBillAmt] = useState(0)
+  const [billShowAmtError, setShowBillAmtError] = useState(false)
+  const [peeps, setPeeps] = useState(0)
+  const [showPeepsError, setShowPeepsError] = useState(false)
+  const [isTipSelected, setIsTipSelected] = useState(false)
+  const [selectedTip, setSelectedTip] = useState(0)
+
+  function handleBillAmtInput(e) {
+    const input = e.target.value
+    const pattern = /^[0-9]*$/ 
+    
+    if (pattern.test(input)) {
+      setShowBillAmtError(false)
+      setBillAmt(input)
+    } else {
+      setShowBillAmtError(true)
+    }
+
+  }
+
+  function handleSelectedTip(e) {
+    const selectedTip = e.target.value
+    console.log(selectedTip);
+    setSelectedTip(selectedTip)
+  }
+
+  function handlePeepsInput(e) {
+    const input = e.target.value;
+    const pattern = /^[0-9]*$/
+
+    if (pattern.test(input)) {
+      setShowPeepsError(false)
+      setPeeps(input)
+    } else {
+      setShowPeepsError(true)
+    }
+  }
 
   return (
-    <div className="App">
-      <h1>Tip Calculator</h1>
+    <div className="wrapper">
+      <img src={logo} alt='Splitter Logo'></img>
       <div className="container">
-        <Form />
+        <Form
+          billAmt={billAmt} 
+          handleBillAmtInput={handleBillAmtInput}
+          handleSelectedTip={handleSelectedTip}
+          billShowAmtError={billShowAmtError}
+          handlePeepsInput={handlePeepsInput}
+          peeps={peeps}
+          showPeepsError={showPeepsError}
+         />
         <Display />
       </div>
     </div>
