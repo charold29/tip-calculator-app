@@ -18,6 +18,13 @@ const App = () => {
   const [showPeepsError, setShowPeepsError] = useState(false)
   const [isTipSelected, setIsTipSelected] = useState(false)
   const [selectedTip, setSelectedTip] = useState(0)
+  const [calculatedTip, setCalculatedTip] = useState(0)
+  const [calculatedTotal, setCalculatedTotal] = useState(0)
+
+  function calculateTip() {
+    setCalculatedTip(billAmt * selectedTip / peeps)
+    console.log(calculatedTip);
+  }
 
   function handleBillAmtInput(e) {
     const input = e.target.value
@@ -26,6 +33,7 @@ const App = () => {
     if (pattern.test(input)) {
       setShowBillAmtError(false)
       setBillAmt(input)
+      calculateTip()
     } else {
       setShowBillAmtError(true)
     }
