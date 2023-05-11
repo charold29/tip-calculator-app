@@ -12,14 +12,14 @@ const Display = ({calculatedTip, total, handleResetBtn}) => {
       <div className='display-group'>
         <div className='display-row'>
           <div className='display-label'>
-            <p className='header'>Tip Amount</p>
+            <p className='header'>Tip Amount&nbsp;</p>
             <p className='unit'>/ person</p>
           </div>
           <p className='display-amount'>{returnCurrencyAmt(`${calculatedTip ? calculatedTip : "0"}`)}</p>
         </div>
         <div className='display-row'>
           <div className='display-label'>
-            <p className='header'>Total</p>
+            <p className='header'>Total&nbsp;</p>
             <p className='unit'>/ person</p>
           </div>
           <div className='display-amount'>{returnCurrencyAmt(`${total ? total : "0"}`)}</div>

@@ -83,15 +83,15 @@ body {
   position: relative;
 }
 
-.tip-custom::placeholder{
-  opacity: 0;
-}
-
 .tip-custom-label {
   position: absolute;
-  right: .5rem;
-  top: 50%;
-  transform: translateY(-50%);
+}
+
+.tip-custom::placeholder {
+  /* font-size: 1.5rem; */
+  font-size: var(--placeholder-font-size);
+  /* letter-spacing: var(--placeholder-letter-spacing); */
+  text-align: center;
 }
 
 .tip-custom:not(:placeholder-shown) + .tip-custom-label {
@@ -219,7 +219,7 @@ input[type=number] {
 }
 
 .display-row {
-  display: flex;
+  display: flexbox;
   justify-content: space-between;
   gap: var(--spacer);
   align-items: center;

@@ -1,16 +1,30 @@
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import dollarIcon from "../assets/images/icon-dollar.svg"
 import personIcon from "../assets/images/icon-person.svg"
 
-const Form = ({bill, setBill, tip, setTip, people, setPeople}) => {
+const Form = ({bill, setBill, setTip, people, setPeople}) => {
   
   const [isCustomSelected, setIsCustomSelected] = useState(false)
+  const [lang, setLang] = useState('document.documentElement.lang');
 
   const handleSelectedTip = (e) => {
     setTip(+e.target.value)
-    setIsCustomSelected(true )
+    setIsCustomSelected(true)
   }
-  
+
+  useEffect(() => {
+    const observer = new MutationObserver(mutations => {
+      mutations.forEach(mutation => {
+        if (mutation.type === 'attributes' && mutation.attributeName === 'lang') {
+          setLang(mutation.target.lang);
+        }
+      });
+    });
+
+    observer.observe(document.documentElement, { attributes: true });
+    return () => observer.disconnect();
+  }, [])
+
   return (
     <div className="form">
       <div className="label-group">
@@ -48,9 +62,9 @@ const Form = ({bill, setBill, tip, setTip, people, setPeople}) => {
             <label className="tip-btn" htmlFor="input5">50%</label>
           </div>
           <div className="custom-wrapper">
-            <input type="number" onInput={handleSelectedTip} name="tip" className="number-input tip-custom" placeholder="Custom" />
-            <label htmlFor="custom" className="tip-custom-label">Custom</label>
-          </div>
+            <input type="number" onInput={handleSelectedTip} id="custom-input" className="number-input tip-custom" name="tip" placeholder="Custom" style={{'--placeholder-font-size': lang === 'es' ? '0.9rem' : '1.5rem'}}/>
+            <label htmlFor="custom" className="tip-custom-label"></label>
+          </div>  
         </div>
       </div>
 
