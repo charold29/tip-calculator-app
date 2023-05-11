@@ -28,6 +28,11 @@ html, body {
   --rounded-sm: .2rem;
 }
 
+::selection {
+  background-color: hsl(var(--brand));
+  color: hsl(var(--white));
+}
+
 body {
   display: flex;
   justify-content: center;
@@ -74,6 +79,25 @@ body {
   font-size: 1rem;
 }
 
+.custom-wrapper {
+  position: relative;
+}
+
+.tip-custom::placeholder{
+  opacity: 0;
+}
+
+.tip-custom-label {
+  position: absolute;
+  right: .5rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.tip-custom:not(:placeholder-shown) + .tip-custom-label {
+  opacity: 0;
+}
+
 .number-wrapper {
   position: relative;
 }
@@ -86,18 +110,18 @@ body {
   border: none;
   padding: .2rem .5rem;
   border-radius: var(--rounded-sm);
-  box-shadow: 
-    0 0 0 -.2rem hsl(var(--text)),
-    0 0 0 -.2rem hsl(var(--neutral1));
+  box-shadow: 0 0 0 -.2rem hsl(var(--brand));
   transition: box-shadow 400ms cubic-bezier
   (cubic-bezier(0.075, 0.82, 0.165, 1));
 }
 
+.number-input.number-error:focus {
+  box-shadow: 0 0 0 .2rem hsl(var(--error));
+}
+
 .number-input:focus {
   outline: none;
-  box-shadow: 
-    0 0 0 .2rem hsl(var(--white)),
-    0 0 0 .4rem hsl(var(--brand));
+  box-shadow: 0 0 0 .2rem hsl(var(--brand));
 }
 
 .number-input:invalid {
@@ -152,21 +176,22 @@ input[type=number] {
 
 .tip-amount {
   position: relative;
+  display: grid;
 }
 
-[name="tip"] {
+.tip-input {
   opacity: 0%;
   position: absolute;
   inset: 0;
   cursor: pointer;
 }
 
-[name="tip"]:hover + .tip-btn  {
+.tip-input:hover + .tip-btn  {
   background-color: hsl(var(--neutral3));
   color: hsl(var(--text));
 }
 
-[name="tip"]:checked + .tip-btn  {
+.tip-input:checked + .tip-btn  {
   background-color: hsl(var(--brand));
 }
 

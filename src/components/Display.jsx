@@ -1,7 +1,12 @@
 //styles
 import './Display.css'
 
-const Display = () => {
+const Display = ({calculatedTip, total, handleResetBtn}) => {
+
+  const returnCurrencyAmt = (amt) => {
+    return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(amt)
+  }
+
   return (
     <div className='display'>
       <div className='display-group'>
@@ -10,19 +15,19 @@ const Display = () => {
             <p className='header'>Tip Amount</p>
             <p className='unit'>/ person</p>
           </div>
-          <div className='display-amount'>
-            <p className='value'>$0.00</p>
-          </div>
+          <p className='display-amount'>{returnCurrencyAmt(`${calculatedTip ? calculatedTip : "0"}`)}</p>
         </div>
         <div className='display-row'>
           <div className='display-label'>
-            <p className='header'>Tip Amount</p>
+            <p className='header'>Total</p>
             <p className='unit'>/ person</p>
           </div>
-          <div className='display-amount'>0</div>
+          <div className='display-amount'>{returnCurrencyAmt(`${total ? total : "0"}`)}</div>
         </div>
       </div>
-      <button className='btn' disabled>Reset</button>
+      {
+        total ? (<button className='btn' onClick={handleResetBtn}>Reset</button>) : (<button className='btn' disabled>Reset</button>)
+      }
     </div>
   )
 }
