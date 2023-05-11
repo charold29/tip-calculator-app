@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
 import dollarIcon from "../assets/images/icon-dollar.svg"
 import personIcon from "../assets/images/icon-person.svg"
 

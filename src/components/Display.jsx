@@ -1,6 +1,3 @@
-//styles
-import './Display.css'
-
 const Display = ({calculatedTip, total, handleResetBtn}) => {
 
   const returnCurrencyAmt = (amt) => {
