@@ -12,9 +12,9 @@ import Display from './components/Display'
 import Form from './components/Form'
 
 const App = () => {
-  const [bill, setBill] = useState("")
+  const [bill, setBill] = useState(" ")
   const [tip, setTip] = useState("")
-  const [people, setPeople] = useState("")
+  const [people, setPeople] = useState(" ")
   const [calculatedTip, setCalculatedTip] = useState(0)
   const [total, setTotal] = useState(0)
 

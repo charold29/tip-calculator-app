@@ -116,7 +116,7 @@ body {
   (cubic-bezier(0.075, 0.82, 0.165, 1));
 }
 
-.number-input.number-error:focus {
+.number-input.number-error, .number-input.number-error:focus, .number-input.number-error:hover {
   box-shadow: 0 0 0 .2rem hsl(var(--error));
 }
 
@@ -225,7 +225,7 @@ input[type=number] {
 }
 
 .display-row {
-  display: flex;
+  display: flexbox;
   justify-content: space-between;
   gap: var(--spacer);
   align-items: center;
