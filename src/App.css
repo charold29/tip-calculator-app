@@ -92,6 +92,7 @@ body {
   font-size: var(--placeholder-font-size);
   /* letter-spacing: var(--placeholder-letter-spacing); */
   text-align: center;
+  transform: translateY(10%);
 }
 
 .tip-custom:not(:placeholder-shown) + .tip-custom-label {
@@ -124,9 +125,14 @@ body {
   box-shadow: 0 0 0 .2rem hsl(var(--brand));
 }
 
+.number-input:hover {
+  outline: none;
+  box-shadow: 0 0 0 .2rem hsl(var(--brand));
+}
+
 .number-input:invalid {
   outline: none;
-  background-color: red;
+  background-color: rgb(255, 147, 147);
   box-shadow: 
     0 0 0 .2rem hsl(var(--white)),
     0 0 0 .4rem hsl(var(--brand));
@@ -219,7 +225,7 @@ input[type=number] {
 }
 
 .display-row {
-  display: flexbox;
+  display: flex;
   justify-content: space-between;
   gap: var(--spacer);
   align-items: center;

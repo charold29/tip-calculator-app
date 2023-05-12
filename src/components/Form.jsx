@@ -30,10 +30,10 @@ const Form = ({bill, setBill, setTip, people, setPeople}) => {
       <div className="label-group">
         <div className="label-wrapper">
           <label className="label" htmlFor="bill">Bill</label>
-          {/* <p className="error">{billShowAmtError ? "Please enter numbers only" : ""}</p> */}
+          <p className="error">{bill === 0 ? "Can't be zero" : ""}</p>
         </div>
         <div className="number-wrapper">
-          <input type="number" className="number-input" id="bill" onInput={(e) => setBill(+e.target.value)} value={bill} />
+          <input type="number" className={`number-input ${bill === 0 ? 'number-error' : ''}`} id="bill" onInput={(e) => setBill(+e.target.value)} onBlur={(e) => setBill(+e.target.value)} value={bill} placeholder="0"/>
           <img src={ dollarIcon } aria-hidden="true" className="icon" />
         </div>
       </div>
@@ -71,10 +71,10 @@ const Form = ({bill, setBill, setTip, people, setPeople}) => {
       <div className="label-group">
         <div className="label-wrapper">
           <label className="label" htmlFor="people">Number of People</label>
-          <p className="error">{people===0 ? "Can't be zero" : ""}</p>
+          <p className="error">{people === 0 ? "Can't be zero" : ""}</p>
         </div>
         <div className="number-wrapper">
-          <input type="number" className={`number-input ${people === 0 ? 'number-error' : ''}`} id="people" onInput={(e) => setPeople(+e.target.value)} value={people} />
+          <input type="number" className={`number-input ${people === 0 ? 'number-error' : ''}`} id="people" onInput={(e) => setPeople(+e.target.value)} value={people} placeholder="0" />
           <img src={ personIcon } aria-hidden="true" className="icon" />
         </div>
       </div>
